@@ -20,4 +20,4 @@ int GetSumOddElement(int[] array, int size){
     for(int i = 0; i < size; i++)
         sum += (i%2==0) ? 0 : array[i];
     return sum;    
-}c
+}
