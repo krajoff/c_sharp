@@ -19,8 +19,8 @@ double[] GetArray(string str)
 
 double[] GetCrossPoint(double[] pt)
 {
-        double[] point = new double[2];
-        point[0] = Math.Round((pt[2]-pt[0])/(pt[1]-pt[3]), 2);
-        point[1] = Math.Round(pt[1]*(pt[2]-pt[0])/(pt[1]-pt[3])+pt[0], 2);
-        return point;
+    double[] point = new double[2];
+    point[0] = Math.Round((pt[2] - pt[0]) / (pt[1] - pt[3]), 2);
+    point[1] = Math.Round(pt[1] * (pt[2] - pt[0]) / (pt[1] - pt[3]) + pt[0], 2);
+    return point;
 }

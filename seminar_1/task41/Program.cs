@@ -13,9 +13,11 @@ int[] GetArray(string str)
     return nums;
 }
 
-int GetPositiveCount(int[] array){
+int GetPositiveCount(int[] array)
+{
     int count = 0;
-    foreach(int i in array){
+    foreach (int i in array)
+    {
         count += (i > 0) ? 1 : 0;
     }
     return count;
