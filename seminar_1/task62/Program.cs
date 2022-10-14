@@ -7,10 +7,11 @@ using static System.Console;
 Clear();
 int[] size = { 4, 4 };
 int[,] array = GetRandomTwoDimensionalArray(size, 10, 100);
+WriteLine("Исходный массив: ");
 DisplayTwoDimentionalArray(array);
-WriteLine("---");
-DisplayRow(SortRow(ConvertArrayToRow(array)));
-
+WriteLine("Массив с элементами по спирали: ");
+int[] sortRow = SortRow(ConvertArrayToRow(array));
+DisplayTwoDimentionalArray(GetHelixArrayFromRow(sortRow, size));
 
 int[,] GetRandomTwoDimensionalArray(int[] size, int min, int max)
 {
@@ -64,13 +65,39 @@ void DisplayRow(int[] array)
         Console.Write(array[i] + "  ");
 }
 
-int[,] GetHelixArrayFromRow(int[] row, size);
+int[,] GetHelixArrayFromRow(int[] row, int[] size)
 {
     int[,] result = new int[size[0], size[1]];
-    for (int i = 0; i < size[0]; i++)
+    int startRow = 0; int endRow = size[0] - 1;
+    int startColumn = 0; int endColumn = size[1] - 1;
+    int k = 0;
+    while (startRow < endRow && startColumn < endColumn)
     {
-        for (int j = 0; j < size[1]; j++)
-            result[i, j] = row[i * j + j];
+
+        for (int i = startColumn; i <= endColumn; i++)
+        {
+            result[startRow, i] = row[k];
+            k++;
+        }
+        startRow += 1;
+        for (int i = startRow; i <= endRow; i++)
+        {
+            result[i, endColumn] = row[k];
+            k++;
+        }
+        endColumn -= 1;
+        for (int i = endColumn; i >= startColumn; i--)
+        {
+            result[endRow, i] = row[k];
+            k++;
+        }
+        endRow -= 1;
+        for (int i = endRow; i >= startRow; i--)
+        {
+            result[i, startColumn] = row[k];
+            k++;
+        }
+        startColumn += 1;
     }
     return result;
 }
